@@ -2,7 +2,9 @@ package game;
 
 import exception.CannotCapturePiece;
 import exception.InvalidPathOfPiece;
+import pieces.Knight;
 import pieces.Piece;
+import pieces.Rook;
 
 import java.nio.InvalidMarkException;
 import java.util.Scanner;
@@ -41,7 +43,7 @@ public class Game {
 
 
         //checks if the path is valid for piece type && if path destination is in the board range
-         if(finalX<board.getTiles().length-1&&finalY<board.getTiles()[0].length-1&&piece.isValidPath(finalX,finalY)){
+         if(finalX<=board.getTiles().length-1&&finalY<=board.getTiles()[0].length-1&&piece.isValidPath(finalX,finalY)){
 
             //gets path that figure has to move
             int[][] path = piece.drawPath(piece.getX(),piece.getY(),finalX,finalY);
@@ -65,10 +67,10 @@ public class Game {
                                 promote(startingTile,finalTile);
                             }
                         }
+                    }else{
+                        startingTile.setPiece(null);
+                        finalTile.setPiece(piece);
                     }
-
-                    startingTile.setPiece(null);
-                    finalTile.setPiece(piece);
                 }else if(finalTile.getPiece().getPlayer()==piece.getPlayer()){
                     //if the piece capturing and piece to capture have the same player
                     throw new CannotCapturePiece();
@@ -92,6 +94,9 @@ public class Game {
      * @return true if the path is valid, false if there is any obstacle on the path
      */
     private boolean checkPath(int[][]path){
+        if (path ==null){
+            return false;
+        }
         for(int i = 0; i<path[0].length-1;i++){
             Tile tileToCheck = board.getTile(path[0][i],path[1][i]);
             if(tileToCheck.getPiece()!=null){
@@ -105,10 +110,21 @@ public class Game {
 
         System.out.println("Promote to ");
         String promotion = scanner.nextLine();
+        Piece piece;
 
-        Piece piece = new 
+        switch(promotion){
+            case "R":
+                piece = new Rook(startingTile.getPiece().getPlayer());
+                break;
+            case "N":
+                piece = new Knight(startingTile.getPiece().getPlayer());
+                break;
+            default:
+                piece=null;
+        }
+
         startingTile.setPiece(null);
-        finalTile.setPiece();
+        finalTile.setPiece(piece);
 
     }
 

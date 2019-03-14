@@ -4,8 +4,12 @@ package test;
 import exception.CannotCapturePiece;
 import exception.InvalidPathOfPiece;
 import game.Game;
+import game.PieceType;
 import org.junit.Test;
 import pieces.Pawn;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 
@@ -126,4 +130,5 @@ public class PawnTest {
 
         game.movePiece(pawn,30,30);
     }
+
 }

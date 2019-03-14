@@ -6,6 +6,7 @@ import game.Player;
 public class Bishop extends Piece {
 
 
+
     /**
      * Constructor for Bishop
      * @param x position x of piece
@@ -42,6 +43,10 @@ public class Bishop extends Piece {
      */
     @Override
     public int[][] drawPath(int startX, int startY, int finalX, int finalY) {
+        return bishopDrawPath(startX, startY, finalX, finalY);
+    }
+
+    static int[][] bishopDrawPath(int startX, int startY, int finalX, int finalY) {
         int pairs = Math.abs(finalX-startX);
 
         int[][] path = new int[2][pairs];

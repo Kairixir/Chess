@@ -6,10 +6,15 @@ public class main {
     public static void main(String[] args) {
 
         Game game = new Game();
-        Pawn pawn = new Pawn(4,4,game.getPlayer1());
+        Piece rook = new Rook(6,6,game.getPlayer1());
 
 
-        game.movePiece(pawn,30,30);
+        System.out.println(game.getBoard().getTile(6,6).getPiece());
+        game.movePiece(rook,6,6);
+        System.out.println(game.getBoard().getTile(6,6).getPiece());
+        System.out.println(game.getBoard().getTile(6,7).getPiece());
+
+
 
     }
 }

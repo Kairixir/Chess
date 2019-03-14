@@ -8,6 +8,11 @@ public abstract class Piece {
     private int x, y;
     private Player player;
     private PieceType pieceType;
+
+    public Piece(Player player) {
+        this.player = player;
+    }
+
     /**
      * Constructor for piece
      * @param x position x of piece
@@ -21,6 +26,7 @@ public abstract class Piece {
         this.pieceType=type;
         this.player.getGame().getBoard().getTile(x, y).setPiece(this);
     }
+
 
     /**
      * A function that determines if the path is valid based on Piece type

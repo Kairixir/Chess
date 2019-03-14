@@ -4,7 +4,9 @@ import game.PieceType;
 import game.Player;
 
 public class Rook extends Piece {
-    /**
+
+
+     /**
      * Constructor for piece
      *
      * @param x      position x of piece
@@ -15,6 +17,10 @@ public class Rook extends Piece {
         super(x, y, player, PieceType.ROOK);
     }
 
+    public Rook(Player player) {
+        super(player);
+    }
+
     @Override
     public boolean isValidPath(int finalX, int finalY) {
         return finalX==getX()||finalY==getY();
@@ -22,6 +28,11 @@ public class Rook extends Piece {
 
     @Override
     public int[][] drawPath(int startX, int startY, int finalX, int finalY) {
+       return rookDrawPath(startX, startY, finalX, finalY);
+
+    }
+
+    static int[][] rookDrawPath(int startX, int startY, int finalX, int finalY) {
         int xMove = Math.abs(finalX-startX);
         int yMove = Math.abs(finalY-startY);
 
@@ -32,8 +43,8 @@ public class Rook extends Piece {
             }
             int[][] path = new int[2][xMove];
             for (int i=0;i<xMove;i++){
-            path[0][i]=startX+x_dir*(i+1);
-            path[1][i]=startY;
+                path[0][i]=startX+x_dir*(i+1);
+                path[1][i]=startY;
             }
             return path;
         }
@@ -50,6 +61,5 @@ public class Rook extends Piece {
             return path;
         }
         return null;
-
     }
 }
