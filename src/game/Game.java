@@ -38,7 +38,7 @@ public class Game {
      */
     public void movePiece(Piece piece, int finalX, int finalY){
         //checks if the path is valid for piece type && if path destination is in the board range
-        if(piece.isValidPath(finalX,finalY)&&finalX<board.getTiles().length-1&&finalY<board.getTiles()[0].length-1){
+         if(finalX<board.getTiles().length-1&&finalY<board.getTiles()[0].length-1&&piece.isValidPath(finalX,finalY)){
 
             //gets path that figure has to move
             int[][] path = piece.drawPath(piece.getX(),piece.getY(),finalX,finalY);
