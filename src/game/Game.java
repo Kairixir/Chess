@@ -5,6 +5,7 @@ import exception.InvalidPathOfPiece;
 import pieces.Piece;
 
 import java.nio.InvalidMarkException;
+import java.util.Scanner;
 
 public class Game {
     private Player player1;
@@ -37,6 +38,8 @@ public class Game {
      * @param finalY position y to move to
      */
     public void movePiece(Piece piece, int finalX, int finalY){
+
+
         //checks if the path is valid for piece type && if path destination is in the board range
          if(finalX<board.getTiles().length-1&&finalY<board.getTiles()[0].length-1&&piece.isValidPath(finalX,finalY)){
 
@@ -50,6 +53,20 @@ public class Game {
                 Tile finalTile = board.getTile(path[0][path[0].length-1],path[1][path[1].length-1]);
                 if (finalTile.getPiece()==null){
                     //sets the starting path to null and moves the piece to new tile
+                    if (piece.getType()==PieceType.PAWN){
+                        if (piece.getPlayer().getColour()==Colour.WHITE){
+                            if (path[1][path[0].length-1]==7){
+
+                                promote(startingTile,finalTile);
+
+                            }
+                        }else{
+                            if (path[1][path[0].length-1]==0){
+                                promote(startingTile,finalTile);
+                            }
+                        }
+                    }
+
                     startingTile.setPiece(null);
                     finalTile.setPiece(piece);
                 }else if(finalTile.getPiece().getPlayer()==piece.getPlayer()){
@@ -82,6 +99,17 @@ public class Game {
             }
         }
         return true;
+    }
+    private void promote(Tile startingTile, Tile finalTile){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Promote to ");
+        String promotion = scanner.nextLine();
+
+        Piece piece = new 
+        startingTile.setPiece(null);
+        finalTile.setPiece();
+
     }
 
 }
