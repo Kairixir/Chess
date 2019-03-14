@@ -11,8 +11,8 @@ public class Queen extends Piece {
         super(player);
     }
 
-    public Queen(int x, int y, Player player, PieceType type) {
-        super(x, y, player, type);
+    public Queen(int x, int y, Player player) {
+        super(x, y, player, PieceType.QUEEN);
     }
 
     @Override
