@@ -9,9 +9,6 @@ public abstract class Piece {
     private Player player;
     private PieceType pieceType;
 
-    public Piece(Player player) {
-        this.player = player;
-    }
 
     /**
      * Constructor for piece

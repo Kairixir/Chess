@@ -21,6 +21,15 @@ public class RookTest {
         assertEquals(rook,game.getBoard().getTile(2,4).getPiece());
     }
     @Test
+    public void twoMoves() throws Exception{
+        Game game = new Game();
+        Rook rook = new Rook(4,4,game.getPlayer1());
+
+        game.movePiece(rook,2,4);
+        game.movePiece(rook,2,2);
+        assertEquals(rook,game.getBoard().getTile(2,2).getPiece());
+    }
+    @Test
     public void rightMovement() throws Exception{
         Game game = new Game();
         Rook Rook = new Rook(4,4,game.getPlayer1());

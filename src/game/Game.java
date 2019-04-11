@@ -2,11 +2,10 @@ package game;
 
 import exception.CannotCapturePiece;
 import exception.InvalidPathOfPiece;
-import pieces.Knight;
-import pieces.Piece;
-import pieces.Rook;
+import pieces.*;
 
 import java.nio.InvalidMarkException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -57,14 +56,16 @@ public class Game {
                     //sets the starting path to null and moves the piece to new tile
                     if (piece.getType()==PieceType.PAWN){
                         if (piece.getPlayer().getColour()==Colour.WHITE){
+
+                            //promoting to new piece (queen fixed)
                             if (path[1][path[0].length-1]==7){
 
-                                promote(startingTile,finalTile);
+                                promote(startingTile,finalTile,true);
 
                             }
                         }else{
                             if (path[1][path[0].length-1]==0){
-                                promote(startingTile,finalTile);
+                                promote(startingTile,finalTile,false);
                             }
                         }
                     }else{
@@ -105,7 +106,7 @@ public class Game {
         }
         return true;
     }
-    private void promote(Tile startingTile, Tile finalTile){
+    private void promote(Tile startingTile, Tile finalTile,boolean white){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Promote to ");
@@ -114,13 +115,19 @@ public class Game {
 
         switch(promotion){
             case "R":
-                piece = new Rook(startingTile.getPiece().getPlayer());
+                piece = new Rook(finalTile.getX(),finalTile.getY(),startingTile.getPiece().getPlayer());
                 break;
             case "N":
-                piece = new Knight(startingTile.getPiece().getPlayer());
+                piece = new Knight(finalTile.getX(),finalTile.getY(),startingTile.getPiece().getPlayer());
+                break;
+            case "B":
+                piece = new Bishop(finalTile.getX(),finalTile.getY(),startingTile.getPiece().getPlayer());
+                break;
+            case "Q":
+                piece = new Queen(finalTile.getX(),finalTile.getY(),startingTile.getPiece().getPlayer());
                 break;
             default:
-                piece=null;
+                throw new InputMismatchException();
         }
 
         startingTile.setPiece(null);

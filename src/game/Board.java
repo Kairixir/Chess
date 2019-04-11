@@ -7,7 +7,7 @@ public class Board {
         tiles = new Tile[sizeX][sizeY];
         for (int i = 0;i<sizeX;i++){
             for(int j=0;j<sizeY;j++){
-                tiles[i][j] = new Tile();
+                tiles[i][j] = new Tile(i,j);
             }
         }
 

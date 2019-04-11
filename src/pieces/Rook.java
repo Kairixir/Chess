@@ -17,9 +17,6 @@ public class Rook extends Piece {
         super(x, y, player, PieceType.ROOK);
     }
 
-    public Rook(Player player) {
-        super(player);
-    }
 
     @Override
     public boolean isValidPath(int finalX, int finalY) {

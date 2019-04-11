@@ -11,10 +11,6 @@ public class Knight extends Piece {
         super(x, y, player, PieceType.KNIGHT);
     }
 
-    public Knight(Player player) {
-        super(player);
-    }
-
     @Override
     public boolean isValidPath(int finalX, int finalY) {
         return Math.abs(finalX-getX())==2&&Math.abs(finalY-getY())==1||Math.abs(finalX-getX())==1&&Math.abs(finalY-getY())==2;
