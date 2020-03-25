@@ -40,7 +40,6 @@ public class Game {
      */
     public void movePiece(Piece piece, int finalX, int finalY){
 
-
         //checks if the path is valid for piece type && if path destination is in the board range
          if(finalX<=board.getTiles().length-1&&finalY<=board.getTiles()[0].length-1&&piece.isValidPath(finalX,finalY)){
 
